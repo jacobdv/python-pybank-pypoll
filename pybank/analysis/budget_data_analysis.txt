@@ -3,5 +3,5 @@ Financial Analysis
 Months: 86 
 Net Total: $38,382,578.00 
 Average Change: $446,309.05 
-Greatest Profit Increase: $999,942.00 
-Greatest Profit Decrease: $-1,022,534.00
+Greatest Profit Increase: $1,170,593.00 
+Greatest Profit Decrease: $-1,196,225.00

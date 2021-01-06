@@ -37,11 +37,11 @@ with open(bank_csv) as csv_file:
 
         # creates a list of keys (months) and a list of values (profit change)
         keys.append(row[0])
-        values.append(row[1])
+        values.append(float(row[1]))
 
     # finds the greatest increase and decrease in the values list
     greatest_increase = max(values)
-    greateset_decrease =  min(values)
+    greateset_decrease = min(values)
 
     # pulls the list position for the greatest increase and decrease
     increase_position = int(values.index(greatest_increase))
@@ -50,10 +50,6 @@ with open(bank_csv) as csv_file:
     # pulls the months corresponding with the greatest increase and decrease
     increase_month = str(keys[increase_position])
     decrease_month = str(keys[decrease_position])
-
-    # converts the greatest increase and decrease to floats for conversion to currency format
-    greatest_increase = float(greatest_increase)
-    greateset_decrease = float(greateset_decrease)
 
     # formats everything as currency      
     average_change = "${:,.2f}".format(net_change / months)
