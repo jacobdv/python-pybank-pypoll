@@ -17,26 +17,38 @@ with open(bank_csv) as csv_file:
     print(f"Header: {csv_header}")
 
     months = 0
-    net_change = 0
     average_change = 0
+    net_change = 0 
+
+
+    month_profit_dict = dict()
+
+    greatest_increase = 0
+    greateset_decrease = 0
 
     # loops through budget_data.csv rows
     for row in csv_reader:
         months = months + 1
         net_change = net_change + float(row[1])
+
+
+
+        # creates a dictionary of key-value pairs
+        # key is the month/year and the value is the profit change
+        month_profit_dict = {row[0]: row[1]}
+
         
     average_change = "${:,.2f}".format(net_change / months)
+    net_change = "${:,.2f}".format(net_change)
+    greatest_increase = "${:,.2f}".format(greatest_increase)
+    greateset_decrease = "${:,.2f}".format(greateset_decrease)
 
-# The Total Number of Months
-print(f"There are {months} months in this dataset.")
+# Prints two header rows, followed by five data values.
+# Months, Total, Average Change, Greatest Increase Month, Greatest Decrease Month
+print(f"Financial Analysis \n------------------- \nMonths: {months} \nNet Total: {net_change} \nAverage Change: {average_change} \nGreatest Profit Increase: {greatest_increase} \nGreatest Profit Decrease: {greateset_decrease}")
 
-# The Net Total Amount of Profits/Losses
-print(f"The net change for this time period was ${float(net_change)}.")
-
-# The Average Change for Profits/Losses
-print(f"The average change was {average_change} for this period of time.")
-
-# The Greatest Increase in Profits
-
-
-# The Greatest Decrease in Losses
+# Sends analysis information to a text file in the analysis file.
+# Overwrites if there's a duplicate file already there.
+budget_data_analysis = open("analysis/budget_data_analysis.txt", "w")
+budget_data_analysis.write(f"Financial Analysis \n------------------- \nMonths: {months} \nNet Total: {net_change} \nAverage Change: {average_change} \nGreatest Profit Increase: {greatest_increase} \nGreatest Profit Decrease: {greateset_decrease}")
+budget_data_analysis.close()
