@@ -1,5 +1,6 @@
 import os
 import csv
+from statistics import mean
 
 # path to budget_data.csv
 bank_csv = os.path.join("resources", "budget_data.csv")
@@ -19,26 +20,47 @@ with open(bank_csv) as csv_file:
     dates = []
     profit_change = []
     greatest_increase = greateset_decrease = 0
+    x = 1
+    y = 0
     increase_month = decrease_month = ""
+
+    current_month = previous_month = 0
+    data = change = []
 
     # loops through budget_data.csv rows
     for row in csv_reader:
         months = months + 1
         net_change = net_change + float(row[1])
 
+        data.append(row)
+
+    for i, j in enumerate(data):
+        print(i)
+        print(j)
+        print((int(data[i][1]))-(int(data[i][1])))
+
+"""         months = months + 1
+        net_change = net_change + float(row[1])
+
         # creates a list of months and a list of profit changes
         dates.append(row[0])
         profit_change.append(float(row[1]))
 
+        # trying to compute average change
+        current_month = float(row[1])
+        change.append(int(current_month)-int(previous_month))
+
+        previous_month = int(current_month)
+
     # finds the greatest increase and decrease and pulls their corresponding month/year as a string
-    increase_month = str(dates[int(profit_change.index(max(profit_change)))])
-    decrease_month = str(dates[int(profit_change.index(min(profit_change)))])
+    increase_month = str(dates[int(change.index(max(int(change))))])
+    decrease_month = str(dates[int(change.index(min(int(change))))])
 
     # formats all money values as currency      
-    average_change = "${:,.2f}".format(net_change / months)
+    average_change = "${:,.2f}".format(change)
     net_change = "${:,.2f}".format(net_change)
     greatest_increase = "${:,.2f}".format(max(profit_change))
-    greateset_decrease = "${:,.2f}".format(min(profit_change))
+    greateset_decrease = "${:,.2f}".format(min(profit_change))"""
 
 # prints two header rows, followed by five data values:
 # {Months, Total, Average Change, Greatest Increase Month, Greatest Decrease Month}
