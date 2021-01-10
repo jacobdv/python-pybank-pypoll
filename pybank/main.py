@@ -25,7 +25,8 @@ with open(bank_csv) as csv_file:
     increase_month = decrease_month = ""
 
     current_month = previous_month = 0
-    data = change = []
+    data = []
+    change = []
 
     # loops through budget_data.csv rows
     for row in csv_reader:
@@ -39,33 +40,21 @@ with open(bank_csv) as csv_file:
         # print(j)
         if k == months:
             break
-        individual_change = ((int(data[k][1]))-(int(data[i][1])))
-        change.append(individual_change)
-        # print((int(data[k][1]))-(int(data[i][1])))
+        change.append((int(data[k][1]))-(int(data[i][1])))
 
-    print(change)
-"""         months = months + 1
-        net_change = net_change + float(row[1])
-
-        # creates a list of months and a list of profit changes
-        dates.append(row[0])
-        profit_change.append(float(row[1]))
-
-        # trying to compute average change
-        current_month = float(row[1])
-        change.append(int(current_month)-int(previous_month))
-
-        previous_month = int(current_month)
+    average_change = mean(change)
+    #greatest_increase = max(change)
+    #greateset_decrease = min(change)
 
     # finds the greatest increase and decrease and pulls their corresponding month/year as a string
-    increase_month = str(dates[int(change.index(max(int(change))))])
-    decrease_month = str(dates[int(change.index(min(int(change))))])
+    #increase_month = str(dates[int(change.index(max(int(change))))])
+    #decrease_month = str(dates[int(change.index(min(int(change))))])
 
     # formats all money values as currency      
-    average_change = "${:,.2f}".format(change)
+    average_change = "${:,.2f}".format(average_change)
     net_change = "${:,.2f}".format(net_change)
-    greatest_increase = "${:,.2f}".format(max(profit_change))
-    greateset_decrease = "${:,.2f}".format(min(profit_change))"""
+    greatest_increase = "${:,.2f}".format(max(change))
+    greateset_decrease = "${:,.2f}".format(min(change))
 
 # prints two header rows, followed by five data values:
 # {Months, Total, Average Change, Greatest Increase Month, Greatest Decrease Month}
