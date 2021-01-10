@@ -21,7 +21,7 @@ with open(bank_csv) as csv_file:
     profit_change = []
     greatest_increase = greateset_decrease = 0
     x = 1
-    y = 0
+    k = 0
     increase_month = decrease_month = ""
 
     current_month = previous_month = 0
@@ -35,10 +35,15 @@ with open(bank_csv) as csv_file:
         data.append(row)
 
     for i, j in enumerate(data):
-        print(i)
-        print(j)
-        print((int(data[i][1]))-(int(data[i][1])))
+        k = i + 1
+        # print(j)
+        if k == months:
+            break
+        individual_change = ((int(data[k][1]))-(int(data[i][1])))
+        change.append(individual_change)
+        # print((int(data[k][1]))-(int(data[i][1])))
 
+    print(change)
 """         months = months + 1
         net_change = net_change + float(row[1])
 
