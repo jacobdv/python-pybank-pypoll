@@ -47,8 +47,8 @@ with open(bank_csv) as csv_file:
     average_change = mean(change)
 
     # finds the greatest increase and decrease and pulls their corresponding month/year as a string
-    increase_month = str(dates[int(change.index(max(change)))])
-    decrease_month = str(dates[int(change.index(min(change)))])
+    increase_month = data[(int(change.index(max(change))) + 1)][0]
+    decrease_month = data[(int(change.index(min(change))) + 1)][0]
 
     # formats all money values as currency      
     average_change = "${:,.2f}".format(average_change)
