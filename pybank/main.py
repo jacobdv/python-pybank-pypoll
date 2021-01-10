@@ -14,17 +14,18 @@ with open(bank_csv) as csv_file:
     csv_header = next(csv_file)
 
     # variables for basic calculations: months, average change, net change
-    months = average_change = net_change = 0 
+    months = 0
+    average_change = 0
+    net_change = 0 
 
-    # dictionary and variables for greatest increase and decrease and their corresponding month/year pairings
-    dates = []
-    profit_change = []
-    greatest_increase = greateset_decrease = 0
-    x = 1
+    # variables for greatest increase and decrease and their corresponding month/year pairings
+    greatest_increase = 0
+    greatest_decrease = 0
+    increase_month = ""
+    decrease_month = ""
+
+    # variable for iteration and saving changes
     k = 0
-    increase_month = decrease_month = ""
-
-    current_month = previous_month = 0
     data = []
     change = []
 
@@ -35,33 +36,32 @@ with open(bank_csv) as csv_file:
 
         data.append(row)
 
+    # iterates through each row. appends list with change values. breaks when it reaches the last row.
     for i, j in enumerate(data):
         k = i + 1
-        # print(j)
         if k == months:
             break
         change.append((int(data[k][1]))-(int(data[i][1])))
 
+    # computes average change
     average_change = mean(change)
-    #greatest_increase = max(change)
-    #greateset_decrease = min(change)
 
     # finds the greatest increase and decrease and pulls their corresponding month/year as a string
-    #increase_month = str(dates[int(change.index(max(int(change))))])
-    #decrease_month = str(dates[int(change.index(min(int(change))))])
+    increase_month = str(dates[int(change.index(max(change)))])
+    decrease_month = str(dates[int(change.index(min(change)))])
 
     # formats all money values as currency      
     average_change = "${:,.2f}".format(average_change)
     net_change = "${:,.2f}".format(net_change)
     greatest_increase = "${:,.2f}".format(max(change))
-    greateset_decrease = "${:,.2f}".format(min(change))
+    greatest_decrease = "${:,.2f}".format(min(change))
 
 # prints two header rows, followed by five data values:
 # {Months, Total, Average Change, Greatest Increase Month, Greatest Decrease Month}
-print(f"\nFinancial Analysis \n------------------- \nMonths: {months} \nNet Total: {net_change} \nAverage Change: {average_change} \nGreatest Profit Increase: {increase_month} ({greatest_increase}) \nGreatest Profit Decrease: {decrease_month} ({greateset_decrease})\n")
+print(f"\nFinancial Analysis \n------------------- \nMonths: {months} \nNet Total: {net_change} \nAverage Change: {average_change} \nGreatest Profit Increase: {increase_month} ({greatest_increase}) \nGreatest Profit Decrease: {decrease_month} ({greatest_decrease})\n")
 
 # sends analysis information to a text file in the analysis file
 # overwrites if there's a duplicate file already there
 budget_data_analysis = open("analysis/budget_data_analysis.txt", "w")
-budget_data_analysis.write(f"Financial Analysis \n------------------- \nMonths: {months} \nNet Total: {net_change} \nAverage Change: {average_change} \nGreatest Profit Increase: {greatest_increase} \nGreatest Profit Decrease: {greateset_decrease}")
+budget_data_analysis.write(f"Financial Analysis \n------------------- \nMonths: {months} \nNet Total: {net_change} \nAverage Change: {average_change} \nGreatest Profit Increase: {greatest_increase} \nGreatest Profit Decrease: {greatest_decrease}")
 budget_data_analysis.close()
