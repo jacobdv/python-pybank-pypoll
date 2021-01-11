@@ -7,6 +7,7 @@ bank_csv = os.path.join("resources", "budget_data.csv")
 
 # opens budget_data.csv
 with open(bank_csv) as csv_file:
+    
     # tells csv to use commas to break lines
     csv_reader = csv.reader(csv_file, delimiter=",")
 
